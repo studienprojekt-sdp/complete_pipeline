@@ -1,0 +1,17 @@
+{
+  "name": "service_1",
+  "version": "1.0.0",
+  "description": "FORMATTER - formats the selected parts of the .json and returns them in some form",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest --forceExit"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.25.0",
+    "express": "^4.17.2",
+    "jest": "^27.4.7",
+    "supertest": "^6.2.2"
+  }
+}
