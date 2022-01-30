@@ -6,12 +6,10 @@ networks:
 
 services:
 
-  # service_1:
-  #   image: service_1_image
-  #   ports:
-  #     - "4001:4001"
-  #   networks:
-  #     - microservice-network
+  service_1:
+    image: service_1_image
+    networks:
+      - microservice-network
 
   service_2:
     image: service_2_image
@@ -25,6 +23,16 @@ services:
 
   service_1_tests:
     image: service_1_image
+    command: sh -cx "npm test"
+    depends_on:
+      - service_1
+      - service_2
+      - service_3
+    networks:
+      - microservice-network
+
+  service_2_tests:
+    image: service_2_image
     command: sh -cx "npm test"
     depends_on:
       - service_2

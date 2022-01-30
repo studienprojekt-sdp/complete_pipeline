@@ -5,8 +5,6 @@ jest.setTimeout(20000);
 describe('tests service_1 api', () => {
     it('tests successful api call ', async () => {
         const response = await request("http://service_1:4001").get("/api/service_1/?tz=Europe/Rome");
-        expect(response.body).toHaveProperty('time');
-        expect(response.body).toHaveProperty('location');
         expect(response.statusCode).toBe(200);
     });
 
