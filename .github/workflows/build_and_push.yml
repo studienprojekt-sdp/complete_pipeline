@@ -5,6 +5,11 @@ on:
     tags:
       - v*
 
+# specify in which directory the jobs are to be run
+defaults:
+  run:
+    working-directory: service_1
+
 env:
   # normally each service would have their own repo and thus their own workflow files
   IMAGE_NAME: ${{ github.repository_owner }}/service_1

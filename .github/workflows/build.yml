@@ -7,6 +7,7 @@ on:
 env:
   IMAGE_NAME: service_1_tests
 
+# specify in which directory the jobs are to be run
 defaults:
   run:
     working-directory: service_1
