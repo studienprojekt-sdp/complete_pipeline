@@ -1,0 +1,36 @@
+version: '3.7'
+
+networks:
+  microservice-network:
+    driver: bridge
+
+services:
+
+  service_1:
+    image: ghcr.io/studienprojekt-sdp/service_1
+    networks:
+      - microservice-network
+
+  service_2:
+    image: jnhck/service_2
+    networks:
+      - microservice-network
+
+  service_3:
+    image: jnhck/service_3
+    networks:
+      - microservice-network
+
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      - "com.centurylinklabs.watchtower.enable=false"
+    environment: 
+      - WATCHTOWER_NOTIFICATIONS=gotify 
+      - "WATCHTOWER_NOTIFICATION_GOTIFY_URL=${GOTIFY_URL}"
+      - "WATCHTOWER_NOTIFICATION_GOTIFY_TOKEN=${GOTIFY_APP_TOKEN}"
+    command: --interval ${UPDATE_INTERVAL}
+    networks:
+      - microservice-network

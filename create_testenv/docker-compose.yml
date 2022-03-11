@@ -1,0 +1,22 @@
+version: '3.7'
+networks:
+  microservice-network:
+    driver: bridge
+services:
+  service_1:
+    image: jnhck/service_1
+    networks:
+      - microservice-network
+  service_2:
+    image: jnhck/service_2
+    networks:
+      - microservice-network
+  service_3:
+    image: jnhck/service_3
+    networks:
+      - microservice-network
+  service_1_test:
+    image: jnhck/service_1
+    command: sh -cx 'npm test'
+    networks:
+      - microservice-network

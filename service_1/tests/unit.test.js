@@ -1,6 +1,6 @@
 const calculationUtils = require("../utils/calculationUtils.js");
 
-describe("test midnight calculator", function () {
+describe("service_1_unittests", function () {
 
   const midnight = {
     time: "0:00:00",

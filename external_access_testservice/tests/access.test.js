@@ -22,7 +22,7 @@ describe('tests if service_1 api can NOT be accessed', () => {
   });
 });
 
-describe('tests if service_2 api can NOT be accessed', () => {
+describe('test_access_from_outside_the_network', () => {
   it('tests successful api call ', async () => {
     try {
       const response = await request("http://service_2:4002").get("/api/service_2/?tz=Europe/Rome");

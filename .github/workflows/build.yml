@@ -1,0 +1,65 @@
+name: Build Image & Run Unittests
+
+on:   
+  pull_request:
+  push:
+
+env:
+  IMAGE_NAME: service_1_tests
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install modules
+        run: yarn
+      
+      - name: Run unittests with Jest
+        run: yarn test -t service_1_unittests
+
+      - name: Build image
+        run: docker build . --file Dockerfile --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
+
+      - name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
+
+      # We must set the commit status manually
+      # Reference: https://github.com/bahmutov/eleventy-example/blob/main/.github/workflows/ci.yml#L27
+      - name: Staging Tests ✅
+        if: ${{ success() }}
+        # set the merge commit status check using GitHub REST API      
+        # see https://docs.github.com/en/rest/reference/repos#create-a-commit-status
+        run: |
+          curl --request POST \
+          --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
+          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          --header 'content-type: application/json' \
+          --data '{
+            "context": "Staging Tests",
+            "state": "success",
+            "description": "Staging tests passed",
+            "target_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          }'
+
+      - name: Staging Tests 🚨
+        if: ${{ failure() }}
+        # set the merge commit status check using GitHub REST API
+        # see https://docs.github.com/en/rest/reference/repos#create-a-commit-status
+        run: |
+          curl --request POST \
+          --url https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
+          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          --header 'content-type: application/json' \
+          --data '{
+            "context": "Staging Tests",
+            "state": "failure",
+            "description": "Staging tests failed",
+            "target_url": "https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          }'
