@@ -12,7 +12,7 @@ def on_message(ws, message):
     msg = json.loads(message)["message"]
     if "Found new" in msg:
         index = msg.find("Found new ") + len("Found new ")
-        image_name = msg[index:].split(" ")[0].split(":")[0].split(r"/")[1] # extracting the service name in a very pretty manner
+        image_name = msg[index:].split(" ")[0].split(":")[0].split(r"/")[2]
         print("imagename:" + image_name)
         generate_docker_compose(image_name) # creating the docker-compose 
         execute_docker_compose() # executing it
