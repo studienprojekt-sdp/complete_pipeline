@@ -9,6 +9,11 @@ env:
 
 jobs:
 
+  # we have to specify in which directory we want to run the GitHub Actions
+  defaults:
+    run:
+      working-directory: service_1
+
   build:
     runs-on: ubuntu-latest
     permissions:
