@@ -9,9 +9,7 @@ services:
   service_1:
     image: ghcr.io/studienprojekt-sdp/service_1
     labels:
-    # i think these two commands overwrite each other
       - "com.centurylinklabs.watchtower.enable=true"
-      - "com.centurylinklabs.watchtower.monitor-only"
     networks:
       - microservice-network
 
@@ -19,7 +17,6 @@ services:
     image: index.docker.io/jnhck/service_2
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
-      - "com.centurylinklabs.watchtower.monitor-only"
     networks:
       - microservice-network
 
@@ -27,7 +24,6 @@ services:
     image: index.docker.io/jnhck/service_3
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
-      - "com.centurylinklabs.watchtower.monitor-only"
     networks:
       - microservice-network
 

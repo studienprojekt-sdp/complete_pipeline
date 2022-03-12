@@ -25,6 +25,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Install modules
+        run: yarn
+      
+      - name: Run unittests with Jest
+        run: yarn test -t service_1_unittests
+
       - name: Build image
         run: docker build . --file Dockerfile --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
 
