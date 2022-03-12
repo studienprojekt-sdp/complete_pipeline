@@ -4,7 +4,9 @@
   "description": "FORMATTER - formats the selected parts of the .json and returns them in some form",
   "main": "app.js",
   "scripts": {
-    "test": "jest --forceExit"
+    "test_send": "npm run test && python test_success.py",
+    "test": "jest --forceExit",
+    "tester": "node app.js"
   },
   "author": "",
   "license": "ISC",
