@@ -3,6 +3,10 @@ networks:
   microservice-network:
     driver: bridge
 services:
+  external_access_test:
+    image: jnhck/external_access_test
+    command: sh -cx 'npm test'
+
   service_1:
     image: jnhck/service_1
     networks:
@@ -17,6 +21,6 @@ services:
       - microservice-network
   service_1_test:
     image: jnhck/service_1
-    command: sh -cx 'npm test'
+    command: sh -cx 'npm test_send'
     networks:
       - microservice-network

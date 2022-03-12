@@ -12,13 +12,12 @@ def on_message(ws, message):
     if "Found new" in msg:
         index = msg.find("Found new ") + len("Found new ")
         image_name = msg[index:].split(" ")[0].split(":")[0].split(r"/")[2]
-        print("imagename:" + image_name)
         load_dotenv()
         try:
             generate_docker_compose(image_name) # creating the docker-compose 
             execute_docker_compose() # executing it
         except:
-            send_package_to_gotify(os.environ.get("GOTIFY_URL"), os.environ.get("GOTIFY_APP_TOKEN"), "Testing environment could not be started successfully!")    
+            send_package_to_gotify(os.environ.get("GOTIFY_URL"), os.environ.get("GOTIFY_APP_TOKEN"), "Testing environment for testing " + image_name + " could not be started successfully!")    
         else:
             send_package_to_gotify(os.environ.get("GOTIFY_URL"), os.environ.get("GOTIFY_APP_TOKEN"), "Testing environment was successfully started!")
 

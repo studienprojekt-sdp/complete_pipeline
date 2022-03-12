@@ -17,5 +17,5 @@ DOCKER_COMPOSE_BLUEPRINTS = {
 
 "service_2_test" : "\n  service_2_test:\n    image: jnhck/service_2\n    command: sh -cx 'npm test'\n    networks:\n      - microservice-network",
 
-"external_access_test" : "\n  external_access_test:\n    image: jnhck/external_access_test\n    command: sh -cx 'npm test'\n    networks:\n      - microservice-network"
+"external_access_test" : "\n  external_access_test:\n    image: jnhck/external_access_test\n    command: sh -cx 'npm test_send'\n"
 }

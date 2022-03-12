@@ -30,6 +30,7 @@ def generate_docker_compose(updated_service: str) -> None:
         f.write(DOCKER_COMPOSE_BLUEPRINTS["version"])
         f.write(DOCKER_COMPOSE_BLUEPRINTS["network"])
         f.write(DOCKER_COMPOSE_BLUEPRINTS["services"])
+        f.write(DOCKER_COMPOSE_BLUEPRINTS["external_access_test"])
         for key in DOCKER_COMPOSE_BLUEPRINTS:
             if key in services_to_be_started or key in testservices_to_be_started:
                 f.write(DOCKER_COMPOSE_BLUEPRINTS[key])
@@ -48,4 +49,3 @@ def send_package_to_gotify(url: str, token: str, message: str):
     })
 
     return resp
-    
