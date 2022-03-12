@@ -13,7 +13,7 @@ DOCKER_COMPOSE_BLUEPRINTS = {
 
 "service_3" : "\n  service_3:\n    image: jnhck/service_3\n    networks:\n      - microservice-network",
 
-"service_1_test" : "\n  service_1_test:\n    image: jnhck/service_1\n    command: sh -cx 'npm test'\n    networks:\n      - microservice-network",
+"service_1_test" : "\n  service_1_test:\n    image: jnhck/service_1\n    command: sh -cx 'npm test_send'\n    networks:\n      - microservice-network",
 
 "service_2_test" : "\n  service_2_test:\n    image: jnhck/service_2\n    command: sh -cx 'npm test'\n    networks:\n      - microservice-network",
 

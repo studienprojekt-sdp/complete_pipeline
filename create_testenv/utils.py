@@ -1,4 +1,5 @@
 import os
+import requests
 
 from blueprint_db import DOCKER_COMPOSE_BLUEPRINTS
 from dependency_db import DOCKER_COMPOSE_DEPENDENCIES
@@ -39,3 +40,12 @@ def execute_docker_compose() -> None:
     
     os.chdir(r"C:\Users\Jan\Dropbox\Studium\current\Studienprojekt\testumgebung\create_testenv")
     os.system("docker-compose up")
+
+
+def send_package_to_gotify(url: str, token: str, message: str):
+    resp = requests.post('http://' + url + '/message?token=' + token, json={
+    "message": message,
+    })
+
+    return resp
+    
