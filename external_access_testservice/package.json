@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test_send": "npm run test && python test_success.py",
-    "test": "jest --forceExit",
-    "tester": "node app.js"
+    "test": "jest --forceExit"
   },
   "author": "",
   "license": "ISC",
