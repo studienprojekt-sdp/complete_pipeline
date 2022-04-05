@@ -11,15 +11,16 @@ def on_message(ws, message):
     msg = json.loads(message)["message"]
     if "Found new" in msg:
         index = msg.find("Found new ") + len("Found new ")
-        image_name = msg[index:].split(" ")[0].split(":")[0].split(r"/")[2]
+        image_name = msg[index:].split(" ")[0].split(":")[0].split(r"/")[2] # extracting the image name
         load_dotenv()
         try:
+            send_package_to_gotify(os.environ.get("GOTIFY_URL"), os.environ.get("GOTIFY_APP_TOKEN"), "New image found for: " + image_name + "\nCreating the necessary docker-compose file to test it...")
             generate_docker_compose(image_name) # creating the docker-compose 
             execute_docker_compose() # executing it
         except:
-            send_package_to_gotify(os.environ.get("GOTIFY_URL"), os.environ.get("GOTIFY_APP_TOKEN"), "Testing environment for testing " + image_name + " could not be started successfully!")    
+            send_package_to_gotify(os.environ.get("GOTIFY_URL"), os.environ.get("GOTIFY_APP_TOKEN"), "Testing environment for testing the image " + image_name + " could not be started successfully!")    
         else:
-            send_package_to_gotify(os.environ.get("GOTIFY_URL"), os.environ.get("GOTIFY_APP_TOKEN"), "Testing environment was successfully started!")
+            send_package_to_gotify(os.environ.get("GOTIFY_URL"), os.environ.get("GOTIFY_APP_TOKEN"), "Testing environment is being started!")
 
 def on_error(ws, error):
     print(error)
