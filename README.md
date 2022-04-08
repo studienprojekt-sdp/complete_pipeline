@@ -1,1 +1,1 @@
-# Showcase for the completed CI/CD/CR-Pipeline
+# Showcase for the completed CI/CD/CT-Pipeline
