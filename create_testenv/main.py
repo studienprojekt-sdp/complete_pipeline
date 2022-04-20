@@ -17,10 +17,9 @@ def on_message(ws, message):
             send_package_to_gotify(os.environ.get("GOTIFY_URL"), os.environ.get("GOTIFY_APP_TOKEN"), "New image found for: " + image_name + "\nCreating the necessary docker-compose file to test it...")
             generate_docker_compose(image_name) # creating the docker-compose 
             execute_docker_compose() # executing it
+            send_package_to_gotify(os.environ.get("GOTIFY_URL"), os.environ.get("GOTIFY_APP_TOKEN"), "Testing environment for: " + image_name + "is being started.")
         except:
             send_package_to_gotify(os.environ.get("GOTIFY_URL"), os.environ.get("GOTIFY_APP_TOKEN"), "Testing environment for testing the image " + image_name + " could not be started successfully!")    
-        else:
-            send_package_to_gotify(os.environ.get("GOTIFY_URL"), os.environ.get("GOTIFY_APP_TOKEN"), "Testing environment is being started!")
 
 def on_error(ws, error):
     print(error)

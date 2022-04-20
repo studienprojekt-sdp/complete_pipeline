@@ -9,8 +9,6 @@ app.listen(port, () => {
   console.log("Service_1 is running!");
 });
 
-// triggering watchtower!!!
-
 app.get("/api/service_1/", function(req, res) {
   const timezone = req.query.tz;
   const requestURL = "http://service_2:4002/api/service_2/?tz=" + timezone;
